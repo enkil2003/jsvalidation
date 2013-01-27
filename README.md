@@ -1,5 +1,4 @@
-jsvalidation
-============
+## jsvalidation
 
 A javascript filtering and validation bridge-to-validation framework. Suporting Zend Frameworks and Cake PHP.
 This framework was created thinking about writting validations in one place and use it all over.
@@ -8,22 +7,27 @@ Then I needed to work with cake php, and i miss too much my validation, so I'm p
 
 The validator is divided in to independent parts.
 
-Javascript:
+### Javascript:
 
 The validators need a object literal {} containing all the fields id that needs to validate.
 In this object optionally you can pass all kind of callbacks to be runned when validation happends.
 With this callbacks: beforeInvalidateElement, afterInvalidateElement, beforeValidateElement, afterValidateElement, beforeValidForm, afterValidForm, beforeInvalidForm, afterInvalidForm.
 You can manipulate on element basis what you want to do.
 
-Adapters:
+### Adapters:
 Adapters are ways to write the object, currenty I have a very advanced Zend Framework 1.x, that reads all Zend_Form_Elements_*, Zend_Validate, Zend_Filter, and writes the object for you and can be added as a decorator to the form you want to validate.
 Also i'm working with a CakePhp 1.* adapter that reads the model validation and then writes the object.
 
 You could do this in a variety of ways, you could read an yml file, xml, or any kind of source and then write the javascript object.
 You could make an adapter that reads attributes from html tags.
 
+### Manually
+You can write the object manually if you want, that means.
+
+### Extend
 Once the object is in place, then you can extend manually your validation object. That can also be automatized :)
 
+### Examples
 See examples folder to see how it works.
 
 This validator comes with a series of validations and filters that can be extended or replaced at will, you could for example write your own validations or just use jquery validate.
