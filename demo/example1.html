@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="../lib/jsValidation.js"></script>
+<style>
+ul.errors {
+    background-color: rgb(255, 168, 175);
+    color: #FFF;
+    font-weight: bold;
+    padding: 5px;
+    margin: 10px 0;
+}
+</style>
+</head>
+<body>
+<h2>This is the most manually validation form using a validation object, but still very simple</h2>
+<fieldset>
+  <legend>Valdation</legend>
+  <form id="example1" method="post">
+    <input type="text" name="name" id="example1Name" />
+    <input type="submit" />
+  </form>
+  <dl>
+    <dt>Validations</dt>
+      <dd>NotEmpty</dd>
+  </dl>
+</fieldset>
+<script>
+var JsValidation = JsValidation || {};
+JsValidation.Forms = JsValidation.Forms || {};
+JsValidation.Forms.example1 = {};
+JsValidation.Forms.example1.elements = {
+    "example1Name": {
+        "validators": {
+            "NotEmpty": {
+                "message": "This field is required"
+            }
+        }
+    }
+};
+$('#example1').submit(
+    function(e) {
+        e.preventDefault();
+        JsValidation.Form.validate($(this));
+        return false;
+    }
+)
+</script>
+
+
+<fieldset>
+  <legend>Valdation and filtering</legend>
+  <form id="example2" method="post">
+    <input type="text" name="name" id="example2Name" value="    useless spaces    "/>
+    <input type="submit" />
+  </form>
+    <dl>
+    <dt>Validations</dt>
+      <dd>NotEmpty</dd>
+    <dt>Filters</dt>
+      <dd>StringTrim</dd>
+  </dl>
+</fieldset>
+<script>
+var JsValidation = JsValidation || {};
+JsValidation.Forms = JsValidation.Forms || {};
+JsValidation.Forms.example2 = {};
+JsValidation.Forms.example2.elements = {
+    "example2Name": {
+        "validators": {
+            "NotEmpty": {
+                "message": "This field is required"
+            }
+        },
+        "filters": ["StringTrim"]
+    }
+};
+$('#example2').submit(
+    function(e) {
+        e.preventDefault();
+        JsValidation.Form.validate($(this));
+        return false;
+    }
+)
+</script>
+
+
+
+<fieldset>
+  <legend>Valdation and filtering</legend>
+  <form id="example3" method="post">
+    <input type="text" name="name" id="example3Name" value="I'm not a valid email address"/>
+    <input type="submit" />
+  </form>
+    <dl>
+    <dt>Validations</dt>
+      <dd>NotEmpty</dd>
+      <dd>EmailAddress</dd>
+    <dt>Filters</dt>
+      <dd>StringTrim</dd>
+  </dl>
+</fieldset>
+<script>
+var JsValidation = JsValidation || {};
+JsValidation.Forms = JsValidation.Forms || {};
+JsValidation.Forms.example3 = {};
+JsValidation.Forms.example3.elements = {
+    "example3Name": {
+        "validators": {
+            "NotEmpty": {
+                "message": "This field is required"
+            },
+            "EmailAddress": {
+                "message": "A valid email address is required"
+            }
+        },
+        "filters": ["StringTrim"]
+    }
+};
+$('#example3').submit(
+    function(e) {
+        e.preventDefault();
+        JsValidation.Form.validate($(this));
+        return false;
+    }
+)
+</script>
+
+
+
+<fieldset>
+  <legend>Valdation and filtering</legend>
+  <form id="example4" method="post">
+    <textarea name="description" id="example4Description"><b>Strip me</b></textarea>
+    <input type="submit" />
+  </form>
+    <dl>
+    <dt>Validations</dt>
+      <dd>NotEmpty</dd>
+    <dt>Filters</dt>
+      <dd>StringTrim</dd>
+      <dd>StripTags</dd>
+  </dl>
+</fieldset>
+<script>
+var JsValidation = JsValidation || {};
+JsValidation.Forms = JsValidation.Forms || {};
+JsValidation.Forms.example4 = {};
+JsValidation.Forms.example4.elements = {
+    "example4Description": {
+        "validators": {
+            "NotEmpty": {
+                "message": "This field is required"
+            }
+        },
+        "filters": ["StringTrim", "StripTags"]
+    }
+};
+$('#example4').submit(
+    function(e) {
+        e.preventDefault();
+        JsValidation.Form.validate($(this));
+        return false;
+    }
+)
+</script>
+
+
+
+<fieldset>
+  <legend>Registration form</legend>
+  <form id="example5" method="post">
+    <dl>
+      <dt><label for="name">Name:</label></dt>
+        <dd><input type="text" name="name" id="name" /></dd>
+      <dt><label for="lastname">Lastname:</label></dt>
+        <dd><input type="text" name="lastname" id="lastname" /></dd>
+      <dt><label for="age">Age:</label></dt>
+        <dd><input type="text" name="age" id="age" /></dd>
+      <dt><label for="password">Password:</label></dt>
+        <dd><input type="password" name="password" id="password" /></dd>
+      <dt><label for="confirmPassword">Confirm Password:</label></dt>
+        <dd><input type="password" name="confirmPassword" id="ConfirmPassword" /></dd>
+    </dl>
+    <input type="submit" />
+  </form>
+</fieldset>
+<script>
+var JsValidation = JsValidation || {};
+JsValidation.Forms = JsValidation.Forms || {};
+JsValidation.Forms.example5 = {};
+JsValidation.Forms.example5.elements = {
+    "name": {
+        "validators": {
+            "NotEmpty": {
+                "message": "This field is required"
+            }
+        },
+        "filters": ["StringTrim", "StripTags"]
+    },
+    "lastname": {
+        "validators": {
+            "NotEmpty": {
+                "message": "This field is required"
+            }
+        },
+        "filters": ["StringTrim", "StripTags"]
+    },
+    "age": {
+        "validators": {
+            "NotEmpty": {
+                "message": "This field is required"
+            },
+            "Between": {
+                "min": 0,
+                "max": 120,
+                "message": "Are you sure you are that age?"
+            }
+        },
+        "filters": ["Int"]
+    },
+    "password": {
+        "validators": {
+            "StringLength": {
+                "min": 6,
+                "max": 12,
+                "messageVariables": ["min", "max"],
+                "message": "The password should be between %min% and %max% caracters",
+                "breakChainOnFailure": true // stop and do not validate any further this field if fails
+            },
+            "Identical": {
+                "token": "ConfirmPassword",
+                "message": "Password doesn't match"
+            }
+        }
+    }
+};
+$('#example5').submit(
+    function(e) {
+        e.preventDefault();
+        JsValidation.Form.validate($(this));
+        return false;
+    }
+)
+</script>
+</body>
+</html>
