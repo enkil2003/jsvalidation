@@ -25,3 +25,5 @@ You could make an adapter that reads attributes from html tags.
 Once the object is in place, then you can extend manually your validation object. That can also be automatized :)
 
 See examples folder to see how it works.
+
+This validator comes with a series of validations and filters that can be extended or replaced at will, you could for example write your own validations or just use jquery validate.
