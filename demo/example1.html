@@ -2,10 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>JS Validation</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script src="../lib/jsValidation.js"></script>
 <style>
+fieldset {
+    margin: 50px 25px;
+}
 ul.errors {
     background-color: rgb(255, 168, 175);
     color: #FFF;
@@ -18,7 +21,7 @@ ul.errors {
 <body>
 <h2>This is the most manually validation form using a validation object, but still very simple</h2>
 <fieldset>
-  <legend>Valdation</legend>
+  <legend>Validation</legend>
   <form id="example1" method="post">
     <input type="text" name="name" id="example1Name" />
     <input type="submit" />
@@ -52,7 +55,7 @@ $('#example1').submit(
 
 
 <fieldset>
-  <legend>Valdation and filtering</legend>
+  <legend>Validation and filtering</legend>
   <form id="example2" method="post">
     <input type="text" name="name" id="example2Name" value="    useless spaces    "/>
     <input type="submit" />
@@ -90,7 +93,7 @@ $('#example2').submit(
 
 
 <fieldset>
-  <legend>Valdation and filtering</legend>
+  <legend>Validation and filtering</legend>
   <form id="example3" method="post">
     <input type="text" name="name" id="example3Name" value="I'm not a valid email address"/>
     <input type="submit" />
@@ -132,7 +135,7 @@ $('#example3').submit(
 
 
 <fieldset>
-  <legend>Valdation and filtering</legend>
+  <legend>Validation and filtering</legend>
   <form id="example4" method="post">
     <textarea name="description" id="example4Description"><b>Strip me</b></textarea>
     <input type="submit" />
