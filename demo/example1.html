@@ -39,7 +39,8 @@ JsValidation.Forms.example1.elements = {
     "example1Name": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required"
+                "message": "This field is required",
+                "event": "blur"
             }
         }
     }
@@ -75,10 +76,11 @@ JsValidation.Forms.example2.elements = {
     "example2Name": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required"
+                "message": "This field is required",
+                "event": "blur"
             }
         },
-        "filters": ["StringTrim"]
+        "filters": [{"filter": "StringTrim", "event": "blur"}]
     }
 };
 $('#example2').submit(
@@ -114,13 +116,15 @@ JsValidation.Forms.example3.elements = {
     "example3Name": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required"
+                "message": "This field is required",
+                "event": "blur"
             },
             "EmailAddress": {
-                "message": "A valid email address is required"
+                "message": "A valid email address is required",
+                "event": "blur"
             }
         },
-        "filters": ["StringTrim"]
+        "filters": [{"filter": "StringTrim", "event": "blur"}]
     }
 };
 $('#example3').submit(
@@ -156,10 +160,11 @@ JsValidation.Forms.example4.elements = {
     "example4Description": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required"
+                "message": "This field is required",
+                "event": "blur"
             }
         },
-        "filters": ["StringTrim", "StripTags"]
+        "filters": [{"filter": "StringTrim", "event": "blur"}]
     }
 };
 $('#example4').submit(
@@ -199,31 +204,35 @@ JsValidation.Forms.example5.elements = {
     "name": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required"
+                "message": "This field is required",
+                "event": "blur"
             }
         },
-        "filters": ["StringTrim", "StripTags"]
+        "filters": [{"filter": "StringTrim", "event": "blur"}]
     },
     "lastname": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required"
+                "message": "This field is required",
+                "event": "blur"
             }
         },
-        "filters": ["StringTrim", "StripTags"]
+        "filters": [{"filter": "StringTrim", "event": "blur"}]
     },
     "age": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required"
+                "message": "This field is required",
+                    "event": "blur"
             },
             "Between": {
                 "min": 0,
                 "max": 120,
-                "message": "Are you sure you are that age?"
+                "message": "Are you sure you are that age?",
+                "event": "blur"
             }
         },
-        "filters": ["Int"]
+        "filters": [{"filter": "Int", "event": "blur"}]
     },
     "password": {
         "validators": {
@@ -232,13 +241,16 @@ JsValidation.Forms.example5.elements = {
                 "max": 12,
                 "messageVariables": ["min", "max"],
                 "message": "The password should be between %min% and %max% caracters",
-                "breakChainOnFailure": true // stop and do not validate any further this field if fails
+                "breakChainOnFailure": true, // stop and do not validate any further this field if fails
+                "event": "blur"
             },
             "Identical": {
                 "token": "ConfirmPassword",
-                "message": "Password doesn't match"
+                "message": "Password doesn't match",
+                "event": "blur"
             }
-        }
+        },
+        "filters": [{"filter": "Int", "event": "blur"}]
     }
 };
 $('#example5').submit(
