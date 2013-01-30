@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>JS Validation</title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="../lib/jquery.1.4.2.min.js"></script>
 <script src="../lib/jsValidation.js"></script>
 <style>
 fieldset {
@@ -15,6 +15,10 @@ ul.errors {
     font-weight: bold;
     padding: 5px;
     margin: 10px 0;
+}
+.error {
+    background-color: #CCC;
+    color: #F00;
 }
 </style>
 </head>
@@ -39,8 +43,7 @@ JsValidation.Forms.example1.elements = {
     "example1Name": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required",
-                "event": "blur"
+                "message": "This field is required"
             }
         }
     }
@@ -76,11 +79,10 @@ JsValidation.Forms.example2.elements = {
     "example2Name": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required",
-                "event": "blur"
+                "message": "This field is required"
             }
         },
-        "filters": [{"filter": "StringTrim", "event": "blur"}]
+        "filters": ["StringTrim"]
     }
 };
 $('#example2').submit(
@@ -116,15 +118,13 @@ JsValidation.Forms.example3.elements = {
     "example3Name": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required",
-                "event": "blur"
+                "message": "This field is required"
             },
             "EmailAddress": {
-                "message": "A valid email address is required",
-                "event": "blur"
+                "message": "A valid email address is required"
             }
         },
-        "filters": [{"filter": "StringTrim", "event": "blur"}]
+        "filters": ["StringTrim"]
     }
 };
 $('#example3').submit(
@@ -159,12 +159,11 @@ JsValidation.Forms.example4 = {};
 JsValidation.Forms.example4.elements = {
     "example4Description": {
         "validators": {
-            "NotEmpty": {
-                "message": "This field is required",
-                "event": "blur"
+            "StripTags": {
+                "message": "This field is required"
             }
         },
-        "filters": [{"filter": "StringTrim", "event": "blur"}]
+        "filters": ["StringTrim", "StripTags"]
     }
 };
 $('#example4').submit(
@@ -204,35 +203,31 @@ JsValidation.Forms.example5.elements = {
     "name": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required",
-                "event": "blur"
+                "message": "This field is required"
             }
         },
-        "filters": [{"filter": "StringTrim", "event": "blur"}]
+        "filters": ["StringTrim"]
     },
     "lastname": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required",
-                "event": "blur"
+                "message": "This field is required"
             }
         },
-        "filters": [{"filter": "StringTrim", "event": "blur"}]
+        "filters": ["StringTrim"]
     },
     "age": {
         "validators": {
             "NotEmpty": {
-                "message": "This field is required",
-                    "event": "blur"
+                "message": "This field is required"
             },
             "Between": {
                 "min": 0,
                 "max": 120,
-                "message": "Are you sure you are that age?",
-                "event": "blur"
+                "message": "Are you sure you are that age?"
             }
         },
-        "filters": [{"filter": "Int", "event": "blur"}]
+        "filters": ["Int"]
     },
     "password": {
         "validators": {
@@ -242,15 +237,13 @@ JsValidation.Forms.example5.elements = {
                 "messageVariables": ["min", "max"],
                 "message": "The password should be between %min% and %max% caracters",
                 "breakChainOnFailure": true, // stop and do not validate any further this field if fails
-                "event": "blur"
             },
             "Identical": {
                 "token": "ConfirmPassword",
-                "message": "Password doesn't match",
-                "event": "blur"
+                "message": "Password doesn't match"
             }
         },
-        "filters": [{"filter": "Int", "event": "blur"}]
+        "filters": ["Int"]
     }
 };
 $('#example5').submit(
@@ -259,7 +252,15 @@ $('#example5').submit(
         JsValidation.Form.validate($(this));
         return false;
     }
-)
+);
+JsValidation.Form.invalidateField = function(element) {
+    element.addClass('error');
+}
+JsValidation.Form.liveValidate(JsValidation.Forms.example1.elements);
+JsValidation.Form.liveValidate(JsValidation.Forms.example2.elements);
+JsValidation.Form.liveValidate(JsValidation.Forms.example3.elements);
+JsValidation.Form.liveValidate(JsValidation.Forms.example4.elements);
+JsValidation.Form.liveValidate(JsValidation.Forms.example5.elements);
 </script>
 </body>
 </html>
