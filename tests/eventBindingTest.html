@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JsValidation Tests</title>
+<link rel="stylesheet" type="text/css" href="qunit.css">
+<script src="../lib/jquery.1.4.2.min.js" language="javascript"></script>
+<script src="qunit.js" language="javascript"></script>
+<script src="prettyDate.js" language="javascript"></script>
+<script src="../lib/JsValidation.js" language="javascript"></script>
+<script>
+test(
+    "Event Binding Tests",
+    function() {
+        JsValidation.Form.liveValidate(JsValidation.Forms.test.elements);
+        var element = $('#name');
+        var assertElementHasDefaultEventsBinded = function() {
+            equal(element.data('events').blur.length, 1);
+            equal(element.data('events').focus.length, 1);
+        }
+        assertElementHasDefaultEventsBinded();
+        
+        var assertElementIsErrorDecoratedOnBlur = function() {
+            element.focus();
+            element.blur();
+            equal(true, element.next().hasClass('errors'));
+        }
+        assertElementIsErrorDecoratedOnBlur();
+    }
+);
+</script>
+</head>
+<body>
+ 
+<div id="qunit"></div>
+
+<div id="qunit-fixture">
+<style>
+.error {
+    background-color: #CCC;
+    color: #F00;
+}
+</style>
+<form id="test" method="post">
+    <input type="text" name="name" id="name" />
+</form>
+
+<script>
+var JsValidation = JsValidation || {};
+JsValidation.Forms = JsValidation.Forms || {};
+JsValidation.Forms.test = {};
+JsValidation.Forms.test.elements = {
+    "name": {
+        "validators": {
+            "NotEmpty": {
+                "message": "This field is required"
+            }
+        }
+    }
+};
+</script>
+
+</div>
+</body>
+</html>

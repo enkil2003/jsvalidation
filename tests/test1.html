@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JsValidation Tests</title>
+<link rel="stylesheet" type="text/css" href="qunit.css">
+<script src="../lib/jquery.1.4.2.min.js" language="javascript"></script>
+<script src="qunit.js" language="javascript"></script>
+<script src="prettyDate.js" language="javascript"></script>
+<script src="../lib/JsValidation.js" language="javascript"></script>
+<script>
+test(
+    "Puedo asignar eventos de error personalizados",
+    function() {
+        var element = $('#example1Name');
+        var assertElementHasErrorAfterBlur = function() {
+            JsValidation.Form.invalidateField = function(element) {
+                element.addClass('error');
+            };
+            element.focus().blur();
+            equal(true, true);
+        }
+        
+        assertElementHasErrorAfterBlur();
+    }
+);
+  </script>
+</head>
+<body>
+ 
+<div id="qunit"></div>
+
+<div id="qunit-fixture">
+<style>
+.error {
+    background-color: #CCC;
+    color: #F00;
+}
+</style>
+<form id="example1" method="post">
+    <input type="text" name="name" id="example1Name" />
+</form>
+
+<script>
+var JsValidation = JsValidation || {};
+JsValidation.Forms = JsValidation.Forms || {};
+JsValidation.Forms.example1 = {};
+JsValidation.Forms.example1.elements = {
+    "example1Name": {
+        "validators": {
+            "NotEmpty": {
+                "message": "This field is required"
+            }
+        }
+    }
+};
+$('#example1').submit(
+    function(e) {
+        e.preventDefault();
+        JsValidation.Form.validate($(this));
+        return false;
+    }
+);
+JsValidation.Form.liveValidate(JsValidation.Forms.example1.elements);
+</script>
+
+</div>
+</body>
+</html>
